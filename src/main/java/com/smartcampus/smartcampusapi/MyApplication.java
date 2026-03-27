@@ -20,6 +20,7 @@ public class MyApplication extends Application {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(RoomResource.class);
         classes.add(SensorResource.class);
+        classes.add(DiscoveryResource.class);
         return classes;
     }
 }
