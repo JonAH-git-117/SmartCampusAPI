@@ -63,7 +63,7 @@ public class SensorResource {
         Room room = roomDAO.getById(sensor.getRoomId());
         if (room == null) {
             return Response.status(422)
-                    .entity("{\"error\": \"Room with id ' " + sensor.getRoomId() + "' does not exist\"}")
+                    .entity("{\"error\": \"Room with id '" + sensor.getRoomId() + "' does not exist\"}")
                     .build();
         }
         sensorDAO.add(sensor);
@@ -93,5 +93,10 @@ public class SensorResource {
         }
         sensorDAO.delete(sensorId);
         return Response.noContent().build();
+    }
+    
+    @Path("/{sensorId}/readings")
+    public SensorReadingResource getReadingsResource(@PathParam("sensorId") String sensorId) {
+        return new SensorReadingResource(sensorId);
     }
 }
