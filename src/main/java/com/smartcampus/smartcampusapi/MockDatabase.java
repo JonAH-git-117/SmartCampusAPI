@@ -20,8 +20,8 @@ public class MockDatabase {
     // In-memory list of all Sensors (replaces tutorial's STUDENTS list)
     public static final List<Sensor> SENSORS = new ArrayList<>();
 
-    // In-memory list of all SensorReadings (replaces tutorial's MODULES list)
-    public static final List<SensorReading> SENSOR_READINGS = new ArrayList<>();
+    // In-memory list of all SensorReadings (replaces tutorial's MODULES list)   
+    public static final List<SensorReading> READINGS = new ArrayList<>();
 
     // Static initialiser block - pre-populates the lists with sample data
     // Copied from tutorial's static block pattern

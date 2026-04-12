@@ -23,7 +23,9 @@ public class Room implements BaseModel {
     private List<String> sensorIds = new ArrayList<>();
 
     // --- Constructors ---
-    public Room() {}
+    public Room() {
+    this.sensorIds = new ArrayList<>();
+    }
 
     public Room(String id, String name, int capacity) {
         this.id = id;

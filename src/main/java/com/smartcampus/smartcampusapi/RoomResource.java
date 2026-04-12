@@ -73,4 +73,19 @@ public class RoomResource {
         roomDAO.delete(roomId);
         return Response.noContent().build();
     }
+    @PUT
+    @Path("/{roomId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateRoom(@PathParam("roomId") String roomId, Room updatedRoom) {
+        Room existing = roomDAO.getById(roomId);
+        if (existing == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("{\"error\": \"Room not found\"}")
+                    .build();
+        }
+        updatedRoom.setId(roomId);
+        roomDAO.update(updatedRoom);
+        return Response.ok(updatedRoom).build();
+    }
 }

@@ -43,9 +43,10 @@ public class DiscoveryResource {
         info.put("contact", "admin@smartcampus.ac.uk");
 
         // Resource collection links - HATEOAS principle
+        String base = context.getBaseUri().toString();
         Map<String, String> resources = new HashMap<>();
-        resources.put("rooms", "/api/v1/rooms");
-        resources.put("sensors", "/api/v1/sensors");
+        resources.put("rooms", base + "rooms");
+        resources.put("sensors", base + "sensors");
         info.put("resources", resources);
 
         return Response.ok(info).build();

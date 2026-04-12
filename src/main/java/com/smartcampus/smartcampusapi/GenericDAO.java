@@ -23,7 +23,7 @@ public class GenericDAO<T extends BaseModel> {
 
     public T getById(String id) {
         for (T item : items) {
-            if (item.getId().equals(id)) {
+            if (item != null && item.getId().equals(id)) {
                 return item;
             }
         }
