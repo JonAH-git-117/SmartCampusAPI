@@ -1,27 +1,45 @@
 package com.smartcampus.smartcampusapi;
+
 /**
- * SensorReading Model
- * Copied from the spec's SensorReading POJO definition.
- * Represents a single historical reading captured by a sensor.
- * Implements BaseModel (adapted to use String IDs) for use with GenericDAO.
+ * Copied from the spec's SensorReading POJO definition (Smart Campus Coursework Spec, Part 1).
+ * Represents a single historical reading captured by a sensor at a point in time.
+ * Implements BaseModel to support use with GenericDAO (String ID version).
+ * Each reading is linked to its parent sensor via sensorId.
+ * IDs are auto-generated as UUIDs by SensorReadingResource if not provided by the client.
+ * Timestamps are recorded as epoch milliseconds and auto-generated if not provided.
  */
+
 public class SensorReading implements BaseModel {
 
-    // Unique reading event ID (UUID recommended by spec)
+    // Unique reading event ID — auto-generated as UUID if not provided by client
     private String id;
 
-    // Epoch time (ms) when the reading was captured
+    // Epoch time in milliseconds when the reading was captured
+    // Auto-generated using System.currentTimeMillis() if not provided by client
     private long timestamp;
 
-    // The actual metric value recorded by the hardware
+    // The actual metric value recorded by the sensor hardware
     private double value;
 
-    // Links this reading back to its parent sensor
+    // Foreign key linking this reading back to its parent sensor
     private String sensorId;
 
-    // --- Constructors ---
+    // Constructors 
+    
+    /**
+     * Default constructor required by Jackson for JSON deserialisation.
+     */
+    
     public SensorReading() {}
 
+    /**
+     * Convenience constructor for creating readings programmatically.
+     * @param id unique reading identifier (UUID recommended)
+     * @param timestamp epoch milliseconds when the reading was captured
+     * @param value the metric value recorded
+     * @param sensorId ID of the sensor that produced this reading
+     */
+    
     public SensorReading(String id, long timestamp, double value, String sensorId) {
         this.id = id;
         this.timestamp = timestamp;
@@ -29,14 +47,13 @@ public class SensorReading implements BaseModel {
         this.sensorId = sensorId;
     }
 
-    // --- BaseModel implementation ---
+    // BaseModel implementation 
     @Override
     public String getId() { return id; }
-
     @Override
     public void setId(String id) { this.id = id; }
 
-    // --- Getters and Setters ---
+    // Getters and Setters 
     public long getTimestamp() { return timestamp; }
     public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
@@ -45,4 +62,5 @@ public class SensorReading implements BaseModel {
 
     public String getSensorId() { return sensorId; }
     public void setSensorId(String sensorId) { this.sensorId = sensorId; }
+    
 }

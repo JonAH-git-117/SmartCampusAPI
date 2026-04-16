@@ -5,30 +5,46 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-<!-- ==================== JERSEY SERVLET CONFIGURATION ==================== -->
-<!-- Registers Jersey as the handler for all incoming REST requests -->
-<!-- This is the entry point that connects Tomcat to our JAX-RS application -->
-    
+<!-- JERSEY SERVLET CONFIGURATION -->
+
+    <!-- Adapted from Tutorial Week 07 web.xml configuration -->
+    <!-- Registers Jersey as the servlet handler for all incoming REST requests -->
+    <!-- Acts as the entry point connecting Apache Tomcat to our JAX-RS app -->
+
     <servlet>
+        
         <servlet-name>SmartCampusAPI</servlet-name>
+        
+        <!-- Jersey's ServletContainer is the JAX-RS dispatcher -->
+        <!-- It receives all HTTP requests and routes them to the correct resource method -->
+        
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 
-<!-- Tells Jersey which package to scan for our resource classes -->
-<!-- Any class with @Path annotation in this package will be registered -->
+        <!-- Tells Jersey which package to scan for @Path, @Provider and @ApplicationPath -->
+        <!-- All resource classes, exception mappers and filters live in this package -->
+        <!-- Scanning the root package ensures LoggingFilter and all mappers are found -->
         
         <init-param>
+            
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>com.smartcampus.smartcampusapi</param-value>
+            
         </init-param>
 
+        <!-- Load Jersey on application startup rather than on first request -->
         <load-on-startup>1</load-on-startup>
+        
     </servlet>
 
-<!-- Maps all requests starting with /api/v1/ to the Jersey servlet -->
+    <!-- Maps all requests starting with /api/v1/ to the Jersey servlet -->
+    <!-- Combined with @ApplicationPath("/api/v1") in MyApplication.java -->
+    <!-- this establishes the versioned API base path -->
     
     <servlet-mapping>
+        
         <servlet-name>SmartCampusAPI</servlet-name>
         <url-pattern>/api/v1/*</url-pattern>
+        
     </servlet-mapping>
-
+    
 </web-app>

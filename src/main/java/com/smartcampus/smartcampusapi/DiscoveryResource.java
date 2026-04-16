@@ -9,40 +9,50 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
 /**
- * DiscoveryResource
  * Adapted from the Oracle Java EE Tutorial HelloWorld JAX-RS example.
  * Available at: https://docs.oracle.com/javaee/7/tutorial/jaxrs.htm
- * 
+ * Implements the root discovery endpoint for Part 1.2 of the spec.
+ * Returns API metadata including version, contact, and HATEOAS resource links.
  * Changes from the Oracle example:
- * - Path changed to "/" for root discovery endpoint as per spec Part 1.2
- * - Returns APPLICATION_JSON instead of text/html (more appropriate for an API)
- * - Uses UriInfo context (kept from Oracle example) to build dynamic resource links
- * - Returns API metadata following HATEOAS principles (Fielding, 2000)
+ * - Path changed to "/" for the root discovery endpoint
+ * - Returns APPLICATION_JSON instead of text/plain
+ * - Uses UriInfo to build dynamic resource links rather than hardcoded strings
+ * - Follows HATEOAS principles (Fielding, 2000) so clients can navigate the API
+ *   from a single entry point without relying on static documentation
  */
+
 @Path("/")
 public class DiscoveryResource {
 
-    // Kept from Oracle example - provides URI context information
+    // Injected by JAX-RS to provide dynamic URI information at runtime
+    // Used to build resource links that automatically reflect the server's base URL
     @Context
     private UriInfo context;
 
-    public DiscoveryResource() {
-    }
+    public DiscoveryResource() {}
 
+    /**
+     * GET /api/v1
+     * Returns essential API metadata including version, contact details,
+     * and hypermedia links to the primary resource collections.
+     */
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getApiInfo() {
         Map<String, Object> info = new HashMap<>();
 
-        // API versioning information
+        // API versioning and identification
         info.put("version", "1.0");
         info.put("name", "Smart Campus Sensor & Room Management API");
 
         // Administrative contact details
         info.put("contact", "admin@smartcampus.ac.uk");
 
-        // Resource collection links - HATEOAS principle
+        // Build dynamic resource links using UriInfo rather than hardcoded strings
+        // This ensures links remain correct if the server port or context path changes
         String base = context.getBaseUri().toString();
         Map<String, String> resources = new HashMap<>();
         resources.put("rooms", base + "rooms");
@@ -51,4 +61,5 @@ public class DiscoveryResource {
 
         return Response.ok(info).build();
     }
+    
 }
