@@ -1,5 +1,10 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.resources;
 
+import com.smartcampus.smartcampusapi.exception.SensorUnavailableException;
+import com.smartcampus.smartcampusapi.dao.MockDatabase;
+import com.smartcampus.smartcampusapi.dao.GenericDAO;
+import com.smartcampus.smartcampusapi.model.SensorReading;
+import com.smartcampus.smartcampusapi.model.Sensor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

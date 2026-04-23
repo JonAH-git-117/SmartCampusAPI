@@ -1,5 +1,8 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.dao;
 
+import com.smartcampus.smartcampusapi.model.SensorReading;
+import com.smartcampus.smartcampusapi.model.Sensor;
+import com.smartcampus.smartcampusapi.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 

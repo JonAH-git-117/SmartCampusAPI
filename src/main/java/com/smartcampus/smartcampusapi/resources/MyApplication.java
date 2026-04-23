@@ -1,5 +1,6 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.resources;
 
+import com.smartcampus.smartcampusapi.resources.DiscoveryResource;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;

@@ -1,5 +1,7 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.exception;
 
+import com.smartcampus.smartcampusapi.exception.LinkedResourceNotFoundException;
+import com.smartcampus.smartcampusapi.model.ErrorMessage;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;

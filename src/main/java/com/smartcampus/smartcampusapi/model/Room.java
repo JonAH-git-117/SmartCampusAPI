@@ -1,4 +1,4 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.model;
 
 import java.util.ArrayList;
 import java.util.List;

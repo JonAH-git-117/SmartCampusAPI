@@ -1,4 +1,4 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.model;
 
 /**
  * Adapted from Tutorial Week 08 (BaseModel.java)
