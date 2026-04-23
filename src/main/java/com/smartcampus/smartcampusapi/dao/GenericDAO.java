@@ -1,5 +1,6 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.dao;
 
+import com.smartcampus.smartcampusapi.model.BaseModel;
 import java.util.List;
 
 /**

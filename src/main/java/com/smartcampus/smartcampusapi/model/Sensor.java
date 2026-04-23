@@ -1,4 +1,4 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.model;
 
 /**
  * Copied from the spec's Sensor POJO definition (Smart Campus Coursework Spec, Part 1).

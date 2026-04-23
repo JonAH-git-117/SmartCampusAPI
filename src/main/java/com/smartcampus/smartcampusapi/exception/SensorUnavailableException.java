@@ -1,4 +1,4 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.exception;
 
 /**
  * Adapted from Tutorial Week 09 (DataNotFoundException.java)

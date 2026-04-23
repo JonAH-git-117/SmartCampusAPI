@@ -1,4 +1,4 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.exception;
 
 /**
  * LinkedResourceNotFoundException

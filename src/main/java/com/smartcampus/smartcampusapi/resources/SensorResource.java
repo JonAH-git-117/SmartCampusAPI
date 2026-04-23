@@ -1,5 +1,11 @@
-package com.smartcampus.smartcampusapi;
+package com.smartcampus.smartcampusapi.resources;
 
+import com.smartcampus.smartcampusapi.resources.SensorReadingResource;
+import com.smartcampus.smartcampusapi.exception.LinkedResourceNotFoundException;
+import com.smartcampus.smartcampusapi.dao.MockDatabase;
+import com.smartcampus.smartcampusapi.dao.GenericDAO;
+import com.smartcampus.smartcampusapi.model.Sensor;
+import com.smartcampus.smartcampusapi.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.*;
@@ -151,7 +157,9 @@ public class SensorResource {
     
     @Path("/{sensorId}/readings")
     public SensorReadingResource getReadingsResource(@PathParam("sensorId") String sensorId) {
+        
         return new SensorReadingResource(sensorId);
+        
     }
     
 }
